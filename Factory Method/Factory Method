@@ -1,0 +1,39 @@
+interface Notificacao {
+    void enviar();
+}
+
+class Email implements Notificacao {
+    public void enviar() {
+        System.out.println("Enviando email...");
+    }
+}
+
+class SMS implements Notificacao {
+    public void enviar() {
+        System.out.println("Enviando SMS...");
+    }
+}
+
+abstract class NotificacaoFactory {
+    abstract Notificacao criarNotificacao();
+}
+
+class EmailFactory extends NotificacaoFactory {
+    Notificacao criarNotificacao() {
+        return new Email();
+    }
+}
+
+class SMSFactory extends NotificacaoFactory {
+    Notificacao criarNotificacao() {
+        return new SMS();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        NotificacaoFactory factory = new EmailFactory();
+        Notificacao n = factory.criarNotificacao();
+        n.enviar();
+    }
+}

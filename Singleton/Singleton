@@ -1,0 +1,23 @@
+class Configuracao {
+    private static Configuracao instancia;
+
+    private Configuracao() {
+        System.out.println("Configuração criada!");
+    }
+
+    public static Configuracao getInstancia() {
+        if (instancia == null) {
+            instancia = new Configuracao();
+        }
+        return instancia;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Configuracao c1 = Configuracao.getInstancia();
+        Configuracao c2 = Configuracao.getInstancia();
+
+        System.out.println(c1 == c2); // true
+    }
+}

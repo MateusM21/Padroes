@@ -1,0 +1,74 @@
+// Produtos
+interface Botao {
+    void desenhar();
+}
+
+interface Janela {
+    void abrir();
+}
+
+// Tema Claro
+class BotaoClaro implements Botao {
+    public void desenhar() {
+        System.out.println("Botão claro");
+    }
+}
+
+class JanelaClara implements Janela {
+    public void abrir() {
+        System.out.println("Janela clara");
+    }
+}
+
+// Tema Escuro
+class BotaoEscuro implements Botao {
+    public void desenhar() {
+        System.out.println("Botão escuro");
+    }
+}
+
+class JanelaEscura implements Janela {
+    public void abrir() {
+        System.out.println("Janela escura");
+    }
+}
+
+// Abstract Factory
+interface FabricaUI {
+    Botao criarBotao();
+    Janela criarJanela();
+}
+
+// Fábricas concretas
+class FabricaClaro implements FabricaUI {
+    public Botao criarBotao() {
+        return new BotaoClaro();
+    }
+
+    public Janela criarJanela() {
+        return new JanelaClara();
+    }
+}
+
+class FabricaEscuro implements FabricaUI {
+    public Botao criarBotao() {
+        return new BotaoEscuro();
+    }
+
+    public Janela criarJanela() {
+        return new JanelaEscura();
+    }
+}
+
+// Main
+public class Main {
+    public static void main(String[] args) {
+        FabricaUI fabrica = new FabricaEscuro();
+
+        Botao botao = fabrica.criarBotao();
+        Janela janela = fabrica.criarJanela();
+
+        botao.desenhar();
+        janela.abrir();
+    }
+}
